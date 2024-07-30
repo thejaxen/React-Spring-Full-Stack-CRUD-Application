@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
+
 public class EmployeeServiceImpl implements EmployeeService {
 
 
@@ -20,7 +20,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public EmployeeDto createEmployee(EmployeeDto employeeDto) {
 
+        //Mapping employee dto to employee jpa entity
         Employee employee = EmployeeMapper.mapToEmployee(employeeDto);
-        return null;
+        //Passing employee jpa entity to database
+        Employee savedEmployee = employeeRepository.save(employee);
+        //Turning employee jpa entity back to client as dto
+        return EmployeeMapper.mapToEmployeeDto(savedEmployee);
     }
 }
