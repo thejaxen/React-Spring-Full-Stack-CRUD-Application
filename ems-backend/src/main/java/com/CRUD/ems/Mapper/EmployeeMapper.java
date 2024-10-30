@@ -5,6 +5,7 @@ import com.CRUD.ems.entity.Employee;
 
 public class EmployeeMapper {
 
+    //Maps the entity to a dto.
     public static EmployeeDto mapToEmployeeDto(Employee employee) {
         return new EmployeeDto(
                 employee.getId(),
@@ -14,6 +15,7 @@ public class EmployeeMapper {
         );
     }
 
+    //Converts dto into jpa entity
     public static Employee mapToEmployee(EmployeeDto employeeDto) {
         return new Employee(
                 employeeDto.getId(),

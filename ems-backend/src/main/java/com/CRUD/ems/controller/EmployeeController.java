@@ -3,9 +3,12 @@ package com.CRUD.ems.controller;
 import com.CRUD.ems.dto.EmployeeDto;
 import com.CRUD.ems.service.EmployeeService;
 import lombok.AllArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/employees")
@@ -30,4 +33,21 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeDto);
     }
 
+    @GetMapping
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees(){
+        List<EmployeeDto> employees = employeeService.getAllEmployees();
+        return ResponseEntity.ok(employees);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<EmployeeDto> updatedEmployee(@PathVariable("id") Long EmployeeId, @RequestBody EmployeeDto updatedEmployee){
+        EmployeeDto employeeDto = employeeService.updateEmployee(EmployeeId, updatedEmployee);
+        return ResponseEntity.ok(employeeDto);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<EmployeeDto> deleteEmployee(@PathVariable("id") Long EmployeeId){
+        employeeService.deleteEmployee(EmployeeId);
+        return ResponseEntity.ok().build();
+    }
 }

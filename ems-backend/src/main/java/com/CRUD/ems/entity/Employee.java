@@ -6,17 +6,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter /*for reading the values of variables*/
-@Setter /*for updating the values of variables*/
-@NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "employees")
+@Getter //lombok /*for reading the values of variables*/
+@Setter //lombok /*for updating the values of variables*/
+@NoArgsConstructor//lombok
+@AllArgsConstructor//lombok
+@Entity //JPA //used this to define class as jpa entity
+@Table(name = "employees")//JPA //to specify table details
 
 public class Employee {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id //JPA
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//JPA
+    //automatically increment the primary key
     private Long id;
 
     @Column(name = "first_name")
@@ -27,4 +28,5 @@ public class Employee {
 
     @Column(name = "email_id", nullable = false, unique = true)
     private String email;
+
 }
